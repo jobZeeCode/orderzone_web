@@ -1,25 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk'; 
+import reducer from './reducer';
+import Home from './component/home/Home';
+import MenuLists from './component/menu/MenuList';
 
 function App() {
+  const store = createStore(reducer, applyMiddleware(thunk));
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <div className="container">
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/menu/:id" component={MenuLists}/>
+            <Route exact path="/" component={Home}/>
+          </Switch>
+        </BrowserRouter>
+      </div>
+    </Provider>
   );
 }
 
