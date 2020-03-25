@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ShopItem from '../shop/ShopItem';
 import { connect } from 'react-redux';
 import * as action from '../../action';
-
 class Home extends Component {
     render() {
         const allShops = this.props.ShopFromStore;

@@ -22,3 +22,14 @@ export const getMenus = () => {
         });
     }
 }
+
+export const addUser = (data) => {
+    return(dispatch) => {
+        axios.post(URL+'/user', data).then((res)=> {
+            dispatch({
+                type: 'ADD_USER',
+                playload: res.data
+            });
+        });
+    }
+}

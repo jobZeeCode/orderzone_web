@@ -7,6 +7,8 @@ import thunk from 'redux-thunk';
 import reducer from './reducer';
 import Home from './component/home/Home';
 import MenuLists from './component/menu/MenuList';
+import Head from './component/home/Head';
+import UserRegister from './component/user/UserRegister';
 
 function App() {
   const store = createStore(reducer, applyMiddleware(thunk));
@@ -14,7 +16,9 @@ function App() {
     <Provider store={store}>
       <div className="container">
         <BrowserRouter>
+          <Head/>
           <Switch>
+            <Route exact path="/user/register" component={UserRegister}/>
             <Route exact path="/menu/:id" component={MenuLists}/>
             <Route exact path="/" component={Home}/>
           </Switch>

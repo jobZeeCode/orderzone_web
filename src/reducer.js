@@ -1,10 +1,12 @@
 const initialState = {
     Shops: [],
-    Menus: []
+    Menus: [],
+    Users: [],
 }
 
 const reducer = (state = initialState, action) => {
-    let data = {}
+    let data = {};
+
     switch(action.type) {
         case 'GET_ALL_SHOPS':
            data = {
@@ -16,6 +18,13 @@ const reducer = (state = initialState, action) => {
             data = {
                 ...state,
                 Menus: action.playload
+            }
+            return data
+        case 'ADD_USER':
+            
+            data = {
+                ...state,
+                Users:[action.playload, ...state.Users] 
             }
             return data
         default:
