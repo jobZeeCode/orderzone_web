@@ -27,7 +27,7 @@ class UserRegister extends Component {
             "Tel": data.Tel
         }
         this.props.AddUser(sendData);
-        this.props.history.push('/');
+        this.props.history.push('/user/login');
     }
     render() {
         return(

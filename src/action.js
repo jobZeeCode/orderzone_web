@@ -23,6 +23,17 @@ export const getMenus = () => {
     }
 }
 
+export const getAllUsers = (data) => {
+    return(dispatch) => {
+        axios.get(URL+'/user').then((res)=> {
+            dispatch({
+                type: 'GET_ALL_USERS',
+                playload: res.data
+            });
+        });
+    }
+}
+
 export const addUser = (data) => {
     return(dispatch) => {
         axios.post(URL+'/user', data).then((res)=> {
@@ -30,6 +41,15 @@ export const addUser = (data) => {
                 type: 'ADD_USER',
                 playload: res.data
             });
+        });
+    }
+}
+
+export const loginUser = (data) => {
+    return(dispatch) => {
+        dispatch({
+            type: 'USER_LOGIN',
+            playload: data 
         });
     }
 }
