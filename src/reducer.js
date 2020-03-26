@@ -16,7 +16,6 @@ const reducer = (state = initialState, action) => {
                ...state,
                Shops: action.playload
            } 
-           console.log(data);
            return data
         case 'GET_ALL_MENUS':
             data = {
@@ -37,9 +36,16 @@ const reducer = (state = initialState, action) => {
             }
             return data
         case 'USER_LOGIN':
-            data = {
-                ...state,
-                Profile: action.playload
+            if (action.playload.IsLogin) {
+                data = {
+                    ...state,
+                    Profile: action.playload
+                }
+            }else {
+                data = {
+                    ...state,
+                    Profile: {IsLogin: false}
+                }
             }
             return data
         default:

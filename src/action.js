@@ -47,9 +47,11 @@ export const addUser = (data) => {
 
 export const loginUser = (data) => {
     return(dispatch) => {
-        dispatch({
-            type: 'USER_LOGIN',
-            playload: data 
+        axios.post(URL+'/user/login', data).then((res)=> {
+            dispatch({
+                type: 'USER_LOGIN',
+                playload: res.data
+            });
         });
     }
 }

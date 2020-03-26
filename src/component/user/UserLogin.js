@@ -6,7 +6,6 @@ class UserLogin extends Component {
     state = {
         Email:'',
         Password : '',
-        ID: ''
     }
     onChangeData = (event) => {
         this.setState({
@@ -15,37 +14,9 @@ class UserLogin extends Component {
     }
     onSubmitForm = (event) => {
         event.preventDefault();
-        var condi = this.checkLogin();
-        if (condi) {
-            //Login pass
-            this.props.history.push('/');
-        }else {
-            //Login fail
-        }
+        this.props.Login(this.state)
     }
 
-    checkLogin() {
-        const allUsers = this.props.UserFromStore;
-        var user = allUsers.filter(item => item.Email === this.state.Email && item.Password === this.state.Password);
-        try {
-            console.log("check :",user[0].ID !== "");
-            if (user[0].ID !== ""){
-                //Login pass
-                const data = {
-                    Email : user[0].Email,
-                    ID : user[0].ID,
-                    IsLogin: true
-                }
-                this.props.Login(data);
-                return true
-            }else {
-                //Login fail
-                return false
-            }
-        }catch (err) {
-            return false 
-        }
-    }
     render() {
         return (
             <div>
@@ -62,27 +33,26 @@ class UserLogin extends Component {
             </div>
         )
     }
-
-    componentDidMount() {
-        this.props.GetUsersFromStore();
+    componentDidUpdate() {
+        if(this.props.Profile.IsLogin) {
+            //Login pass
+            this.props.history.push('/');
+        }else {
+            //Login not pass
+        }
     }
 }
-
 const mapStateToProps = (state) => {
     return {
-        UserFromStore : state.Users
+        Profile : state.Profile
     }
 }
-
 const mapDispatchToProps = (dispatch) => {
     return {
         Login : (data) => {
             return dispatch(action.loginUser(data));
-        },
-        GetUsersFromStore: () => {
-            return dispatch(action.getAllUsers());
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserLogin);
+export default connect(mapStateToProps , mapDispatchToProps)(UserLogin);
