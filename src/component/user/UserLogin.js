@@ -18,6 +18,9 @@ class UserLogin extends Component {
     }
 
     render() {
+        if (this.props.Profile.IsLogin){
+            this.props.history.push('/');
+        }
         return (
             <div>
                 <h1>Login</h1>
