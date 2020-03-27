@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
-import axios from 'axios';
 import * as action from '../../action';
+import {storage} from '../../firebase';
 
 class ShopRegister extends Component {
     state = {
@@ -13,8 +13,7 @@ class ShopRegister extends Component {
         HouseNumber : "",
         Post : "",
         Type : "",
-        Image: "",
-        Pic : [""],
+        Pic : [],
         NumberOfInputFile : 0 
     }
 
@@ -23,15 +22,6 @@ class ShopRegister extends Component {
             [event.target.name] : event.target.value
         })
     } 
-
-    onImageChange = (event) => {
-        let arr = this.Pic.filter((v,i,arr)=> v !== "");
-        arr.append(event.target.files[0])
-        this.setState({
-            Pic: arr
-        });
-        console.log(this.state)
-    }
 
     onSubmitForm = (data, event) => {
         event.preventDefault();
@@ -45,8 +35,12 @@ class ShopRegister extends Component {
                     HouseNumber : data.HouseNumber,
                     Post : data.Post,
                 },
+                Pic : "",
+                Type : data.Type,
+                UserID: this.props.Profile.ID
         }
-        this.props.AddShop(data);
+        this.props.AddShop(sendData);
+        this.props.history.push('/');
     }
     render() {
         return (
@@ -60,20 +54,31 @@ class ShopRegister extends Component {
                     <input type="text" name="HouseNumber" placeholder="HouseNumber" onChange={this.onChangeData}/><br/> 
                     <input type="text" name="Post" placeholder="Post" onChange={this.onChangeData}/><br/> 
                     <input type="text" name="Type" placeholder="Type" onChange={this.onChangeData}/><br/> 
-                    <input type="file"  onChange={this.onImageChange}/><br/>
                     <button type="submit">ADD DATA</button>
                 </form>
             </div>
         )
+    }
+
+    componentDidMount() {
+        if (!this.props.Profile.IsLogin) {
+            this.props.history.push('/user/login')
+        }
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        Profile : state.Profile
     }
 }
 
 const mapDistpatchToProps = (dispatch) => {
     return {
         AddShop : (data) => {
-            return dispatch(this.action.addShop(data));
+            return dispatch(action.addShop(data));
         }
     }
 }
 
-export default connect(null, mapDistpatchToProps) (ShopRegister);
+export default connect(mapStateToProps, mapDistpatchToProps) (ShopRegister);

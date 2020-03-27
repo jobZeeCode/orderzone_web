@@ -49,9 +49,16 @@ const reducer = (state = initialState, action) => {
             }
             return data
         case 'ADD_SHOP':
-            data = {
-                ...state,
-                Shop:[action.playload, ...state.Shops]
+            try {
+                data = {
+                    ...state,
+                    Shops:[action.playload, ...state.Shops]
+                }
+            }catch (e){
+                data = {
+                    ...state,
+                    Shops: action.playload
+                }
             }
             return data
         default:

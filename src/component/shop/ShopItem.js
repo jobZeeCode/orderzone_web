@@ -9,7 +9,6 @@ class ShopItem extends Component {
             <div>
                 <ul>
                     <li>{this.props.data.Name}</li>
-                    <li>{this.props.data.Addr['country']}</li>
                     <li>{this.props.data.Description}</li>
                 </ul>
                 <br/>

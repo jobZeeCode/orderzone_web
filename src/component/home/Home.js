@@ -4,12 +4,21 @@ import { connect } from 'react-redux';
 import * as action from '../../action';
 class Home extends Component {
     render() {
-        const allShops = this.props.ShopFromStore;
-        let lists = allShops.map(item => (
-            <ul key={item.ID}>
-                <li><ShopItem data={item}/></li>
-            </ul>
-        ))
+        let lists;
+        try {
+            const allShops = this.props.ShopFromStore;
+            lists = allShops.map(item => (
+                <ul key={item.ID}>
+                    <li><ShopItem data={item}/></li>
+                </ul>
+            ))
+        } catch(e){
+            lists = (
+                <div>
+                    No shops
+                </div>
+            )
+        }
         return (
             <div>
                 {lists}
