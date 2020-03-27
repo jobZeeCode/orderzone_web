@@ -7,9 +7,11 @@ class Head extends Component {
             <div>
                 <b>Menu</b>
                 <br/>
-                <Link to="/User/Login">Login</Link>
+                <Link to="/user/login">Login</Link>
                 <br/>
-                <Link to="/User/Register">Register</Link>
+                <Link to="/user/register">Register</Link>
+                <br/>
+                <Link to="/shop/register">Shop Register</Link>
             </div>
         )
     }

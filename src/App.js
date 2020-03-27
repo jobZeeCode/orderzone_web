@@ -10,6 +10,7 @@ import MenuLists from './component/menu/MenuList';
 import Head from './component/home/Head';
 import UserRegister from './component/user/UserRegister';
 import UserLogin from './component/user/UserLogin';
+import ShopRegister from './component/shop/ShopRegister';
 
 function App() {
   const store = createStore(reducer, applyMiddleware(thunk));
@@ -19,6 +20,7 @@ function App() {
         <BrowserRouter>
           <Head/>
           <Switch>
+            <Route exact path="/shop/register" component={ShopRegister}/>
             <Route exact path="/user/login" component={UserLogin}/>
             <Route exact path="/user/register" component={UserRegister}/>
             <Route exact path="/menu/:id" component={MenuLists}/>

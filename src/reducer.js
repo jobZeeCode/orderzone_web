@@ -48,6 +48,12 @@ const reducer = (state = initialState, action) => {
                 }
             }
             return data
+        case 'ADD_SHOP':
+            data = {
+                ...state,
+                Shop:[action.playload, ...state.Shops]
+            }
+            return data
         default:
             break;
     }

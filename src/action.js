@@ -55,3 +55,14 @@ export const loginUser = (data) => {
         });
     }
 }
+
+export const addShop = (data) => {
+    return(dispatch) => {
+        axios.post(URL+'/shop', data).then((res)=> {
+            dispatch({
+                type: 'ADD_SHOP',
+                playload: res.data
+            });
+        });
+    }
+}
