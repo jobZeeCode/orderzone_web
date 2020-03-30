@@ -61,6 +61,15 @@ const reducer = (state = initialState, action) => {
                 }
             }
             return data
+        case 'EDIT_SHOP':
+            let allShops = state.Shops;
+            let index = allShops.findIndex((item)=> item.ID === action.playload.ID);
+            allShops[index] = action.playload;
+            data  = {
+                ...state,
+                Shops:allShops
+            }
+            return data
         default:
             break;
     }

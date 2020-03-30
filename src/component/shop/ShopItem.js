@@ -10,6 +10,7 @@ class ShopItem extends Component {
                 <ul>
                     <li>{this.props.data.Name}</li>
                     <li>{this.props.data.Description}</li>
+                    <li>{this.props.data.Addr['Province']} , {this.props.data.Addr['District']}</li>
                 </ul>
                 <br/>
                 <Link to={`/menu/${this.props.data.ID}`}>

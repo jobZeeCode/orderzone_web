@@ -12,6 +12,7 @@ class Head extends Component {
                 <Link to="/user/register">Register</Link>
                 <br/>
                 <Link to="/shop/register">Shop Register</Link>
+                <br/>
             </div>
         )
     }

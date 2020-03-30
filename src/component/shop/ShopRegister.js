@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
 import * as action from '../../action';
-import {storage} from '../../firebase';
+import {Link} from 'react-router-dom';
 
 class ShopRegister extends Component {
     state = {
@@ -45,6 +45,7 @@ class ShopRegister extends Component {
     render() {
         return (
             <div>
+                <Link to={`/shop/control/${this.props.Profile.ID}`}>Shop Control Panel</Link>
                 <form onSubmit={this.onSubmitForm.bind(this, this.state)}>
                     <input type="text" name="Name" placeholder="Shop Name" onChange={this.onChangeData}/><br/> 
                     <input type="text" name="Description" placeholder="Description Shop" onChange={this.onChangeData}/><br/> 

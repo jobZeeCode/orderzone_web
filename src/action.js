@@ -66,3 +66,14 @@ export const addShop = (data) => {
         });
     }
 }
+
+export const editShop = (data) => {
+    return(dispatch) => {
+        axios.put(`${URL}/shop?id=${data.id}`, data).then((res)=> {
+            dispatch({
+                type: 'EDIT_SHOP',
+                playload: res.data
+            });
+        });
+    }
+}
